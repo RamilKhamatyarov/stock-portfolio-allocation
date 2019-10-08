@@ -30,7 +30,9 @@ public class StockPortfolioCalculationServiceImpl implements StockPortfolioCalcu
             throw new BusinessException(errorMessage);
         }
 
+
         List<StockCompany> stockCompanyList = companyStockList.getStocks().stream()
+                .filter(companyStockVolume -> companyStockVolume.getVolume() > 0)
                 // Получить для каждой акции портфеля текущую котировку (latestPrice) и сектор (sector), в котором работает компания,
                 // используя API https://iexcloud.io/ (использовать бесплатный план на 500000 запросов в месяц)
                 .map(companyStockVolume -> StockCompany.builder()

@@ -20,7 +20,7 @@ public class PostStockPortfolioController {
     @Autowired
     private StockPortfolioCalculationService stockPortfolioCalculationService;
 
-    @PostMapping("/post/stock-portfolio")
+    @PostMapping("/stock-portfolio/calculate")
     public StockPortfolio getStockPortfolio(@RequestBody CompanyStockList companyStockList) throws BusinessException {
         return stockPortfolioCalculationService.calculateStockProportion(companyStockList);
     }
