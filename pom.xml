@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>23</java.version>
+		<java.version>24</java.version>
 		<spring-boot-admin.version>2.7.18</spring-boot-admin.version>
 		<lombok.version>1.18.42</lombok.version>
 		<junit.version>4.13.2</junit.version>
