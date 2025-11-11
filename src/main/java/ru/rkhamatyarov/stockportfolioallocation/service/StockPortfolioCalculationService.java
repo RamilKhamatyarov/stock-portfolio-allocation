@@ -6,12 +6,14 @@ import ru.rkhamatyarov.stockportfolioallocation.exception.BusinessException;
 
 public interface StockPortfolioCalculationService {
 
-
     /**
-     * @param companyStockList list of stocks with company name and total volume
-     * @return
-     *      total stock portfolio
-     * @throws BusinessException
+     * Calculates stock proportion for the given company stock list.
+     *
+     * @param companyStockList list of stocks with company name and volume
+     * @return total stock portfolio with calculated allocations
+     * @throws BusinessException if calculation fails
      */
-    StockPortfolio calculateStockProportion(CompanyStockList companyStockList) throws BusinessException;
+    StockPortfolio calculateStockProportion(
+            CompanyStockList companyStockList
+    ) throws BusinessException;
 }

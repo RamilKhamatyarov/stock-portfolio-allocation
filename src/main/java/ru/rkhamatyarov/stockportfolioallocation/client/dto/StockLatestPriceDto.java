@@ -1,11 +1,13 @@
 package ru.rkhamatyarov.stockportfolioallocation.client.dto;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import lombok.Data;
 
 @Data
 public class StockLatestPriceDto {
+
+    /**
+     * Latest price of the stock.
+     */
     private BigDecimal latestPrice;
 }

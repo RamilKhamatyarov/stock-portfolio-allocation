@@ -2,10 +2,16 @@ package ru.rkhamatyarov.stockportfolioallocation.domain;
 
 import lombok.Data;
 
-import java.math.BigInteger;
-
 @Data
 public class CompanyStockVolume {
+
+    /**
+     * Stock symbol of the company.
+     */
     private String symbol;
+
+    /**
+     * Trading volume of the stock.
+     */
     private Integer volume;
 }

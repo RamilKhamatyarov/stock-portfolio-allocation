@@ -1,6 +1,5 @@
 package ru.rkhamatyarov.stockportfolioallocation.controller;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,19 +9,33 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.rkhamatyarov.stockportfolioallocation.domain.CompanyStockList;
 import ru.rkhamatyarov.stockportfolioallocation.domain.StockPortfolio;
 import ru.rkhamatyarov.stockportfolioallocation.exception.BusinessException;
-import ru.rkhamatyarov.stockportfolioallocation.service.StockPortfolioCalculationService;
+import ru.rkhamatyarov.stockportfolioallocation.service
+        .StockPortfolioCalculationService;
 
 @Slf4j
 @RestController
 @RequestMapping("/stock-portfolio-allocation/v1")
-public class PostStockPortfolioController {
+public final class PostStockPortfolioController {
 
+    /**
+     * Service for calculating stock portfolio allocations.
+     */
     @Autowired
-    private StockPortfolioCalculationService stockPortfolioCalculationService;
+    private StockPortfolioCalculationService
+            stockPortfolioCalculationService;
 
+    /**
+     * Calculates stock portfolio allocation for given stocks.
+     *
+     * @param companyStockList the list of company stocks to allocate
+     * @return calculated stock portfolio with sector allocations
+     * @throws BusinessException if calculation fails
+     */
     @PostMapping("/stock-portfolio/calculate")
-    public StockPortfolio getStockPortfolio(@RequestBody CompanyStockList companyStockList) throws BusinessException {
-        return stockPortfolioCalculationService.calculateStockProportion(companyStockList);
+    public StockPortfolio getStockPortfolio(
+            @RequestBody final CompanyStockList companyStockList
+    ) throws BusinessException {
+        return stockPortfolioCalculationService
+                .calculateStockProportion(companyStockList);
     }
-
 }
