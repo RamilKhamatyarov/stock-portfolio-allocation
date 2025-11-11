@@ -7,6 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SuppressWarnings("checkstyle:HideUtilityClassConstructor")
 public class StockPortfolioAllocationApplication {
 
+    // Private constructor to prevent instantiation
+    protected StockPortfolioAllocationApplication() {
+        // This constructor is intentionally empty
+    }
+
     /**
      * Entry point for the Stock Portfolio Allocation application.
      *

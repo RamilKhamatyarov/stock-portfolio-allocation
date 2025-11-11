@@ -8,17 +8,17 @@ import lombok.Data;
 public class SectorProportion {
 
     /**
-     * Stock of sector
+     * Industry or market sector.
      */
     private String sector;
 
     /**
-     * Stock asset value
+     * Asset value of the sector in the portfolio.
      */
     private Integer assetValue;
 
     /**
-     * Stock proportion
+     * Proportion percentage of the sector.
      */
     private Double proportion;
 }

@@ -42,29 +42,29 @@ public final class IEXCloudClientImpl implements IEXCloudClient {
     /**
      * Constructs IEXCloudClientImpl with required dependencies.
      *
-     * @param restClient the REST client
-     * @param iexCloudHost the IEX Cloud host URL
-     * @param sectorServicePath the sector service path
-     * @param latestPriceServicePath the latest price service path
-     * @param securityToken the security token
+     * @param client the REST client
+     * @param host the IEX Cloud host URL
+     * @param sectorService the sector service path
+     * @param priceService the latest price service path
+     * @param token the security token
      * @throws IllegalStateException if security token is invalid
      */
     public IEXCloudClientImpl(
-            final RestClient restClient,
-            @Value("${iex.cloud.host}") final String iexCloudHost,
+            final RestClient client,
+            @Value("${iex.cloud.host}") final String host,
             @Value("${iex.cloud.sector.service}")
-            final String sectorServicePath,
+            final String sectorService,
             @Value("${iex.cloud.price.service}")
-            final String latestPriceServicePath,
-            @Value("${iex.cloud.token}") final String securityToken
+            final String priceService,
+            @Value("${iex.cloud.token}") final String token
     ) {
-        this.restClient = restClient;
-        this.iexCloudHost = iexCloudHost;
-        this.sectorServicePath = sectorServicePath;
-        this.latestPriceServicePath = latestPriceServicePath;
+        this.restClient = client;
+        this.iexCloudHost = host;
+        this.sectorServicePath = sectorService;
+        this.latestPriceServicePath = priceService;
 
-        validateToken(securityToken);
-        this.securityToken = securityToken;
+        validateToken(token);
+        this.securityToken = token;
     }
 
     @Override

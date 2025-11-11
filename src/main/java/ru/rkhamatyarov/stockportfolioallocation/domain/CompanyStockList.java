@@ -6,5 +6,9 @@ import java.util.List;
 
 @Data
 public class CompanyStockList {
+
+    /**
+     * Company volume collections
+     */
     private List<CompanyStockVolume> stocks;
 }
