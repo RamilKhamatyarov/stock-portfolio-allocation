@@ -6,12 +6,12 @@ import lombok.Data;
 public class CompanyStockVolume {
 
     /**
-     * symbol of stock
+     * Stock symbol of the company.
      */
     private String symbol;
 
     /**
-     * Volume of stock
+     * Trading volume of the stock.
      */
     private Integer volume;
 }

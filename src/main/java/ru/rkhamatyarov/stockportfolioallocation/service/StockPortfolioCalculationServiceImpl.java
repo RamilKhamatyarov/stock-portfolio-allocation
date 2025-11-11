@@ -24,6 +24,9 @@ import ru.rkhamatyarov.stockportfolioallocation.exception
 public final class StockPortfolioCalculationServiceImpl
         implements StockPortfolioCalculationService {
 
+    /**
+     * Constant for converting decimal to percentage.
+     */
     private static final int PERCENTAGE_MULTIPLIER = 100;
 
     /**

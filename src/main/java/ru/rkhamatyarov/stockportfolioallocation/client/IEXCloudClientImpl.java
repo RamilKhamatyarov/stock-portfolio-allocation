@@ -12,6 +12,9 @@ import ru.rkhamatyarov.stockportfolioallocation.client.dto
 @Component
 public final class IEXCloudClientImpl implements IEXCloudClient {
 
+    /**
+     * URL query parameter template for API token.
+     */
     private static final String TOKEN_TEMPLATE = "?token=";
 
     /**

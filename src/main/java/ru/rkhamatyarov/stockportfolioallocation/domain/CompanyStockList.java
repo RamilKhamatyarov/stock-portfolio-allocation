@@ -8,7 +8,7 @@ import java.util.List;
 public class CompanyStockList {
 
     /**
-     * Company volume collections
+     * List of company stocks with their volumes.
      */
     private List<CompanyStockVolume> stocks;
 }
