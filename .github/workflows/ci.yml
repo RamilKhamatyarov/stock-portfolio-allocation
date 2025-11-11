@@ -33,6 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_JAVA: true
           JAVA_CHECKSTYLE_SUPPRESSIONS_FILE: .github/checkstyle/suppressions.xml
+          FILTER_REGEX_EXCLUDE: .*[/\\]src[/\\]test[/\\].*
           DISABLE_GITHUB_STATUS_API: true
           VALIDATE_GIT_COMMIT_HISTORY: false
           HTTP_TIMEOUT: 30

@@ -3,13 +3,22 @@ package ru.rkhamatyarov.stockportfolioallocation.domain;
 import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-
 @Data
 @Builder
 public class SectorProportion {
+
+    /**
+     * Stock of sector
+     */
     private String sector;
+
+    /**
+     * Stock asset value
+     */
     private Integer assetValue;
+
+    /**
+     * Stock proportion
+     */
     private Double proportion;
 }

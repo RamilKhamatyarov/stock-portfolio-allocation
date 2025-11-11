@@ -1,8 +1,16 @@
 package ru.rkhamatyarov.stockportfolioallocation.exception;
 
-public class BusinessException extends Exception{
+/**
+ * Custom business exception for application-specific errors.
+ */
+public class BusinessException extends Exception {
 
-    public BusinessException(String message) {
+    /**
+     * Constructs a BusinessException with the specified error message.
+     *
+     * @param message the error message
+     */
+    public BusinessException(final String message) {
         super(message);
     }
 }
