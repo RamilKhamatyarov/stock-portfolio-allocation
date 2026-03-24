@@ -1,23 +1,22 @@
 package ru.rkhamatyarov.stockportfolioallocation.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.*;
 import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.webmvc.test.autoconfigure.*;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.bean.override.mockito.*;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.rkhamatyarov.stockportfolioallocation.domain.CompanyStockList;
 import ru.rkhamatyarov.stockportfolioallocation.domain.SectorProportion;
 import ru.rkhamatyarov.stockportfolioallocation.domain.StockPortfolio;
 import ru.rkhamatyarov.stockportfolioallocation.service.StockPortfolioCalculationService;
+import tools.jackson.databind.json.*;
 
 
+import java.nio.charset.*;
 import java.util.Collections;
 
 import static org.mockito.BDDMockito.given;
@@ -25,11 +24,10 @@ import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(PostStockPortfolioController.class)
 public class PostStockPortfolioControllerTest {
 
-    @MockBean
+    @MockitoBean
     private StockPortfolioCalculationService stockPortfolioCalculationService;
 
     @Autowired
@@ -37,9 +35,10 @@ public class PostStockPortfolioControllerTest {
 
     private JacksonTester<StockPortfolio> jsonStockPortfolio;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        JacksonTester.initFields(this, new ObjectMapper());
+        JsonMapper jsonMapper = JsonMapper.builder().build();
+        JacksonTester.initFields(this, jsonMapper);
     }
 
     @Test
@@ -54,7 +53,7 @@ public class PostStockPortfolioControllerTest {
         given(stockPortfolioCalculationService.calculateStockProportion(companyStockList)).willReturn(stockPortfolio);
 
         // when
-        MediaType MEDIA_TYPE_JSON_UTF8 = new MediaType("application", "json", java.nio.charset.Charset.forName("UTF-8"));
+        MediaType MEDIA_TYPE_JSON_UTF8 = new MediaType("application", "json", StandardCharsets.UTF_8);
         MockHttpServletResponse rs = mockMvc.perform(
                 post("/stock-portfolio-allocation/v1/stock-portfolio/calculate")
                         .accept(MEDIA_TYPE_JSON_UTF8)
