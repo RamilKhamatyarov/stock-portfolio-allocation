@@ -1,12 +1,14 @@
 package ru.rkhamatyarov.stockportfolioallocation;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.TestPropertySource;
+import ru.rkhamatyarov.stockportfolioallocation.config.TestRestClientConfig;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@Import(TestRestClientConfig.class)
+@TestPropertySource(properties = "iex.cloud.token=test")
 public class StockPortfolioAllocationApplicationTests {
 
 	@Test

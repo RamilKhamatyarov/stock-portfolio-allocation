@@ -1,13 +1,10 @@
 package ru.rkhamatyarov.stockportfolioallocation.service;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.*;
-import org.springframework.test.context.junit4.SpringRunner;
 import ru.rkhamatyarov.stockportfolioallocation.client.IEXCloudClient;
 import ru.rkhamatyarov.stockportfolioallocation.client.dto.StockCompanySectorDto;
 import ru.rkhamatyarov.stockportfolioallocation.domain.CompanyStockList;
@@ -19,10 +16,10 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class StockPortfolioCalculationServiceTest {
 
@@ -32,9 +29,9 @@ public class StockPortfolioCalculationServiceTest {
     @Autowired
     private StockPortfolioCalculationService stockPortfolioCalculationService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        MockitoAnnotations.initMocks(true);
+        MockitoAnnotations.openMocks(true);
     }
 
     /**
@@ -116,7 +113,7 @@ public class StockPortfolioCalculationServiceTest {
      * Stock proportion falling with exception
      * @throws BusinessException - custom exception
      */
-    @Test(expected = BusinessException.class)
+    @Test
     public void calculateStockProportionException() throws BusinessException {
         //given
         StockCompanySectorDto stockCompanySectorDto = new StockCompanySectorDto();
@@ -128,25 +125,11 @@ public class StockPortfolioCalculationServiceTest {
         when(iexCloudClient.getLatestPrice(anyString()))
                 .thenReturn(1.5);
 
-        //when
         CompanyStockList companyStockList = new CompanyStockList();
 
-        StockPortfolio stockPortfolio = stockPortfolioCalculationService
-                .calculateStockProportion(companyStockList);
-
-        //then
-        assertNotNull(stockPortfolio);
-        assertEquals(
-                stockCompanySectorDto.getSector(),
-                stockPortfolio.getAllocations().getFirst().getSector()
-        );
-        assertEquals(
-                Integer.valueOf(60),
-                stockPortfolio.getAllocations().getFirst().getAssetValue()
-        );
-        assertEquals(
-                Double.valueOf(100),
-                stockPortfolio.getAllocations().getFirst().getProportion()
+        //when & then
+        assertThrows(BusinessException.class, () ->
+                stockPortfolioCalculationService.calculateStockProportion(companyStockList)
         );
     }
 }
