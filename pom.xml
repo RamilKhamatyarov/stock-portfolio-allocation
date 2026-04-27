@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>21</java.version>
 		<spring-boot-admin.version>2.7.18</spring-boot-admin.version>
-		<lombok.version>1.18.42</lombok.version>
+		<lombok.version>1.18.46</lombok.version>
 	</properties>
 
 	<dependencies>
